@@ -8,14 +8,16 @@ import axios from "axios";
 const ProductList = () => {
   const [instrumentos, setInstrumentos] = useState([]);
 
-  const getInstrumentos =  () => {
+  const getInstrumentos = () => {
     axios
       .get("http://localhost:8080/instrumentos")
       .then((res) => setInstrumentos(res.data.data));
 
-    /*if (instrumentos == null) {
-      axios.put("http://localhost:8080/instrumentos/save-list", {productsData});
-    }*/
+    if (instrumentos == null) {
+      axios.post("http://localhost:8080/instrumentos/save-list", {
+        productsData,
+      });
+    }
   };
   useEffect(() => {
     getInstrumentos();
