@@ -14,9 +14,8 @@ const ProductList = () => {
       .then((res) => setInstrumentos(res.data.data));
 
     if (instrumentos == null) {
-      axios.post("http://localhost:8080/instrumentos/save-list", {
-        productsData,
-      });
+      console.log(productsData);
+      axios.post("http://localhost:8080/instrumentos/save-list", productsData);
     }
   };
   useEffect(() => {
