@@ -23,9 +23,8 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .cors().configurationSource(corsConfigurationSource()).and()
-                .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.OPTIONS).permitAll()
+                .cors().and()
+                .authorizeRequests()
                 .anyRequest().permitAll();
         return http.build();
     }
@@ -36,7 +35,7 @@ public class SecurityConfiguration {
         configuration.setAllowedOrigins(Arrays.asList(corsAllowedOrigins));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Requestor-Type"));
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         configuration.setExposedHeaders(Arrays.asList("X-Get-Header"));
         configuration.setMaxAge(3600L);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
